@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+  namespace: kubernetes-dashboard
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # para usar  certificados
+spec:
+  rules:
+  - host: dashboard-k8s.nistall.es  # subdominio de Cloudflare
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kubernetes-dashboard
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - dashboard-k8s.nistall.es  # Nombre de dominio
+    secretName: dashboard-tls  # Nombre del secreto para TLS 
