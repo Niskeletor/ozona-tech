@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: default  # Namespace puesto mediante la plantilla de Helm
+  labels:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/name: grafana
+spec:
+  type: NodePort
+  ports:
+    - port: 80           # Puerto estándar para acceder a Grafana
+      targetPort: 3000   # Puerto en el que Grafana está escuchando internamente
+      nodePort: 32002    # Puerto Expuesto 32002
+  selector:
+    app.kubernetes.io/instance: grafana    # Labels
+    app.kubernetes.io/name: grafana
