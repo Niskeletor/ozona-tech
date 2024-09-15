@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: n8n-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: n8n-ozona.nistall.net  # Subdominio creado en Cloudflare
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: n8n
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - n8n-ozona.nistall.net  
+    secretName: n8n-tls  # Este es el secreto que contendrá del certificado TLS
