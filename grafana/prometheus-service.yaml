@@ -14,4 +14,4 @@ spec:
       nodePort: 32003        # Elige un NodePort que esté disponible
   selector:
     app.kubernetes.io/instance: prometheus
-    app.kubernetes.io/name: prometheus-server
+    app.kubernetes.io/name: prometheus #corregido , antes era prometheus-server y no se lograba conectar con Grafana
