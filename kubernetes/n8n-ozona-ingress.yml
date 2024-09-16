@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: n8n-ozona.nistall.es  # Asegúrate de que este host coincida con tu subdominio configurado en Cloudflare
+  - host: n8n-ozona.nistall.es  # subdominio configurado en Cloudflare
     http:
       paths:
       - path: /
@@ -20,4 +20,4 @@ spec:
   tls:
   - hosts:
     - n8n-ozona.nistall.es  # Debe coincidir con el host definido arriba
-    secretName: n8n-ozona-tls  # Cambia esto al nombre que prefieras
+    secretName: n8n-ozona-tls  # Nombre del secreto que contendrá el certificado TLS
